@@ -48472,12 +48472,12 @@
     "5777": {
       "events": {},
       "links": {},
-      "address": "0x18c2BE8a1EFB8b2ca70d2B4c9D8e7f6a228C4D9e",
-      "transactionHash": "0x6112f57cacbe64e72d151e1488d77e81e44c78c3a4250d34e1e58df57fdc0ef6"
+      "address": "0x728Dc221DAaDdD839fA5a9d5C5432F7696DbeC88",
+      "transactionHash": "0xf349b0cca801dc3ff08a5f8f90b4f039e59ffb76f2d87c3e23965f378768e8f0"
     }
   },
-  "schemaVersion": "3.4.8",
-  "updatedAt": "2022-08-22T15:32:20.197Z",
+  "schemaVersion": "3.4.9",
+  "updatedAt": "2022-08-22T19:32:35.812Z",
   "networkType": "ethereum",
   "devdoc": {
     "methods": {}

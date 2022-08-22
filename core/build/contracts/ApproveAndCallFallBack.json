@@ -1,61 +1,42 @@
 {
-  "contractName": "Owned",
+  "contractName": "ApproveAndCallFallBack",
   "abi": [
     {
-      "inputs": [],
-      "payable": false,
-      "stateMutability": "nonpayable",
-      "type": "constructor"
-    },
-    {
-      "anonymous": false,
+      "constant": false,
       "inputs": [
         {
-          "indexed": true,
           "internalType": "address",
-          "name": "_from",
+          "name": "from",
           "type": "address"
         },
         {
-          "indexed": true,
-          "internalType": "address",
-          "name": "_to",
-          "type": "address"
-        }
-      ],
-      "name": "OwnershipTransferred",
-      "type": "event"
-    },
-    {
-      "constant": false,
-      "inputs": [
+          "internalType": "uint256",
+          "name": "tokens",
+          "type": "uint256"
+        },
         {
-          "internalType": "address payable",
-          "name": "_newOwner",
+          "internalType": "address",
+          "name": "token",
           "type": "address"
+        },
+        {
+          "internalType": "bytes",
+          "name": "data",
+          "type": "bytes"
         }
       ],
-      "name": "transferOwnership",
-      "outputs": [],
-      "payable": true,
-      "stateMutability": "payable",
-      "type": "function"
-    },
-    {
-      "constant": false,
-      "inputs": [],
-      "name": "acceptOwnership",
+      "name": "receiveApproval",
       "outputs": [],
       "payable": false,
       "stateMutability": "nonpayable",
       "type": "function"
     }
   ],
-  "metadata": "{\"compiler\":{\"version\":\"0.5.16+commit.9c3226ce\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"_from\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"_to\",\"type\":\"address\"}],\"name\":\"OwnershipTransferred\",\"type\":\"event\"},{\"constant\":false,\"inputs\":[],\"name\":\"acceptOwnership\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address payable\",\"name\":\"_newOwner\",\"type\":\"address\"}],\"name\":\"transferOwnership\",\"outputs\":[],\"payable\":true,\"stateMutability\":\"payable\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"project:/contracts/TartanToken.sol\":\"Owned\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/TartanToken.sol\":{\"keccak256\":\"0x20dab0a5ffc21d021210f4c65393185f39993204ff8d5865522e9bfb6fff9557\",\"urls\":[\"bzz-raw://bd02ae0cfea4b4c302877b8ec6a5f814d3ce3da363f5ad179e44ae72e90b1e93\",\"dweb:/ipfs/QmXVoETa297jYVHRgyVwo2pGWdzWEVt38bJ1sxVJiLjnJN\"]}},\"version\":1}",
-  "bytecode": "0x608060405234801561001057600080fd5b50336000806101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff1602179055506102f8806100606000396000f3fe6080604052600436106100295760003560e01c806379ba50971461002e578063f2fde38b14610045575b600080fd5b34801561003a57600080fd5b50610043610089565b005b6100876004803603602081101561005b57600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190505050610226565b005b600160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff16146100e357600080fd5b600160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff166000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff167f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e060405160405180910390a3600160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff166000806101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff1602179055506000600160006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff160217905550565b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff161461027f57600080fd5b80600160006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff1602179055505056fea265627a7a72315820f687acb19c51e8b95a09d9d95dc2abdc3c273bcf88c3519feefb413cdf91c7b164736f6c63430005100032",
-  "deployedBytecode": "0x6080604052600436106100295760003560e01c806379ba50971461002e578063f2fde38b14610045575b600080fd5b34801561003a57600080fd5b50610043610089565b005b6100876004803603602081101561005b57600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190505050610226565b005b600160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff16146100e357600080fd5b600160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff166000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff167f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e060405160405180910390a3600160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff166000806101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff1602179055506000600160006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff160217905550565b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff161461027f57600080fd5b80600160006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff1602179055505056fea265627a7a72315820f687acb19c51e8b95a09d9d95dc2abdc3c273bcf88c3519feefb413cdf91c7b164736f6c63430005100032",
-  "sourceMap": "2657:613:1:-;;;2813:56;8:9:-1;5:2;;;30:1;27;20:12;5:2;2813:56:1;2852:10;2844:5;;:18;;;;;;;;;;;;;;;;;;2657:613;;;;;;",
-  "deployedSourceMap": "2657:613:1:-;;;;;;;;;;;;;;;;;;;;;;;;;;3077:191;;8:9:-1;5:2;;;30:1;27;20:12;5:2;3077:191:1;;;:::i;:::-;;2956:116;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;2956:116:1;;;;;;;;;;;;;;;;;;;:::i;:::-;;3077:191;3143:8;;;;;;;;;;;3129:22;;:10;:22;;;3121:31;;;;;;3195:8;;;;;;;;;;;3167:37;;3188:5;;;;;;;;;;;3167:37;;;;;;;;;;;;3222:8;;;;;;;;;;;3214:5;;:16;;;;;;;;;;;;;;;;;;3259:1;3240:8;;:21;;;;;;;;;;;;;;;;;;3077:191::o;2956:116::-;2926:5;;;;;;;;;;;2912:19;;:10;:19;;;2904:28;;;;;;3056:9;3045:8;;:20;;;;;;;;;;;;;;;;;;2956:116;:::o",
+  "metadata": "{\"compiler\":{\"version\":\"0.5.16+commit.9c3226ce\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"from\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"tokens\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"token\",\"type\":\"address\"},{\"internalType\":\"bytes\",\"name\":\"data\",\"type\":\"bytes\"}],\"name\":\"receiveApproval\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"project:/contracts/TartanToken.sol\":\"ApproveAndCallFallBack\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/TartanToken.sol\":{\"keccak256\":\"0x20dab0a5ffc21d021210f4c65393185f39993204ff8d5865522e9bfb6fff9557\",\"urls\":[\"bzz-raw://bd02ae0cfea4b4c302877b8ec6a5f814d3ce3da363f5ad179e44ae72e90b1e93\",\"dweb:/ipfs/QmXVoETa297jYVHRgyVwo2pGWdzWEVt38bJ1sxVJiLjnJN\"]}},\"version\":1}",
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "sourceMap": "",
+  "deployedSourceMap": "",
   "source": "pragma solidity =0.5.16;\n\n// ----------------------------------------------------------------------------\n// 'CMU Coin' CROWDSALE token contract\n// Symbol      : CMUC\n// Name        : CMU Token\n// Total supply: Gazillion\n// Decimals    : 18\n//\n// (c) by Moritz Neto & Daniel Bar with BokkyPooBah / Bok Consulting Pty Ltd Au 2017. The MIT Licence.\n// ----------------------------------------------------------------------------\n\n\n// ----------------------------------------------------------------------------\n// Safe maths\n// ----------------------------------------------------------------------------\ncontract SafeMath {\n    function safeAdd(uint a, uint b) internal pure returns (uint c) {\n        c = a + b;\n        require(c >= a);\n    }\n    function safeSub(uint a, uint b) internal pure returns (uint c) {\n        require(b <= a);\n        c = a - b;\n    }\n    function safeMul(uint a, uint b) internal pure returns (uint c) {\n        c = a * b;\n        require(a == 0 || c / a == b);\n    }\n    function safeDiv(uint a, uint b) internal pure returns (uint c) {\n        require(b > 0);\n        c = a / b;\n    }\n}\n\n\n// ----------------------------------------------------------------------------\n// ERC Token Standard #20 Interface\n// https://github.com/ethereum/EIPs/blob/master/EIPS/eip-20-token-standard.md\n// ----------------------------------------------------------------------------\ncontract ERC20Interface {\n    function totalSupply() public view returns (uint);\n    function balanceOf(address tokenOwner) public view returns (uint balance);\n    function allowance(address tokenOwner, address spender) public view returns (uint remaining);\n    function transfer(address to, uint tokens) public returns (bool success);\n    function approve(address spender, uint tokens) public returns (bool success);\n    function transferFrom(address from, address to, uint tokens) public returns (bool success);\n\n    event Transfer(address indexed from, address indexed to, uint tokens);\n    event Approval(address indexed tokenOwner, address indexed spender, uint tokens);\n}\n\n\n// ----------------------------------------------------------------------------\n// Contract function to receive approval and execute function in one call\n//\n// Borrowed from MiniMeToken\n// ----------------------------------------------------------------------------\ncontract ApproveAndCallFallBack {\n    function receiveApproval(address from, uint256 tokens, address token, bytes memory data) public;\n}\n\n\n// ----------------------------------------------------------------------------\n// Owned contract\n// ----------------------------------------------------------------------------\ncontract Owned {\n    address payable owner;\n    address payable newOwner;\n\n    event OwnershipTransferred(address indexed _from, address indexed _to);\n\n    constructor() public {\n        owner = msg.sender;\n    }\n\n    modifier onlyOwner {\n        require(msg.sender == owner);\n        _;\n    }\n\n    function transferOwnership(address payable _newOwner) public payable onlyOwner {\n        newOwner = _newOwner;\n    }\n    function acceptOwnership() public {\n        require(msg.sender == newOwner);\n        emit OwnershipTransferred(owner, newOwner);\n        owner = newOwner;\n        newOwner = address(0);\n    }\n}\n\n\n// ----------------------------------------------------------------------------\n// ERC20 Token, with the addition of symbol, name and decimals and assisted\n// token transfers\n// ----------------------------------------------------------------------------\ncontract TartanToken is ERC20Interface, Owned, SafeMath {\n    string public symbol;\n    string public  name;\n    uint8 public decimals;\n    uint public _totalSupply;\n    uint public startDate;\n    uint public bonusEnds;\n    uint public endDate;\n\n    mapping(address => uint) balances;\n    mapping(address => mapping(address => uint)) allowed;\n\n\n    // ------------------------------------------------------------------------\n    // Constructor\n    // ------------------------------------------------------------------------\n    constructor() public {\n        symbol = \"TARTANC\";\n        name = \"Tartan Token\";\n        decimals = 18;\n        bonusEnds = now + 1 hours;\n        endDate = now + 1 weeks;\n\n    }\n\n\n    // ------------------------------------------------------------------------\n    // Total supply\n    // ------------------------------------------------------------------------\n    function totalSupply() public view returns (uint) {\n        return _totalSupply  - balances[address(0)];\n    }\n\n\n    // ------------------------------------------------------------------------\n    // Get the token balance for account `tokenOwner`\n    // ------------------------------------------------------------------------\n    function balanceOf(address tokenOwner) public view returns (uint balance) {\n        return balances[tokenOwner];\n    }\n\n\n    // ------------------------------------------------------------------------\n    // Transfer the balance from token owner's account to `to` account\n    // - Owner's account must have sufficient balance to transfer\n    // - 0 value transfers are allowed\n    // ------------------------------------------------------------------------\n    function transfer(address to, uint tokens) public returns (bool success) {\n        balances[msg.sender] = safeSub(balances[msg.sender], tokens);\n        balances[to] = safeAdd(balances[to], tokens);\n        emit Transfer(msg.sender, to, tokens);\n        return true;\n    }\n\n\n    // ------------------------------------------------------------------------\n    // Token owner can approve for `spender` to transferFrom(...) `tokens`\n    // from the token owner's account\n    //\n    // https://github.com/ethereum/EIPs/blob/master/EIPS/eip-20-token-standard.md\n    // recommends that there are no checks for the approval double-spend attack\n    // as this should be implemented in user interfaces\n    // ------------------------------------------------------------------------\n    function approve(address spender, uint tokens) public returns (bool success) {\n        allowed[msg.sender][spender] = tokens;\n        emit Approval(msg.sender, spender, tokens);\n        return true;\n    }\n\n\n    // ------------------------------------------------------------------------\n    // Transfer `tokens` from the `from` account to the `to` account\n    //\n    // The calling account must already have sufficient tokens approve(...)-d\n    // for spending from the `from` account and\n    // - From account must have sufficient balance to transfer\n    // - Spender must have sufficient allowance to transfer\n    // - 0 value transfers are allowed\n    // ------------------------------------------------------------------------\n    function transferFrom(address from, address to, uint tokens) public returns (bool success) {\n        balances[from] = safeSub(balances[from], tokens);\n        allowed[from][msg.sender] = safeSub(allowed[from][msg.sender], tokens);\n        balances[to] = safeAdd(balances[to], tokens);\n        emit Transfer(from, to, tokens);\n        return true;\n    }\n\n\n    // ------------------------------------------------------------------------\n    // Returns the amount of tokens approved by the owner that can be\n    // transferred to the spender's account\n    // ------------------------------------------------------------------------\n    function allowance(address tokenOwner, address spender) public view returns (uint remaining) {\n        return allowed[tokenOwner][spender];\n    }\n\n\n    // ------------------------------------------------------------------------\n    // Token owner can approve for `spender` to transferFrom(...) `tokens`\n    // from the token owner's account. The `spender` contract function\n    // `receiveApproval(...)` is then executed\n    // ------------------------------------------------------------------------\n    function approveAndCall(address spender, uint tokens, bytes memory data) public returns (bool success) {\n        allowed[msg.sender][spender] = tokens;\n        emit Approval(msg.sender, spender, tokens);\n        ApproveAndCallFallBack(spender).receiveApproval(msg.sender, tokens, address(this), data);\n        return true;\n    }\n\n    // ------------------------------------------------------------------------\n    // 1,000 CMU Tokens per 1 ETH\n    // ------------------------------------------------------------------------\n    function () external payable {\n        require(now >= startDate && now <= endDate);\n        uint tokens;\n        if (now <= bonusEnds) {\n            tokens = msg.value * 1200;\n        } else {\n            tokens = msg.value * 1000;\n        }\n        balances[msg.sender] = safeAdd(balances[msg.sender], tokens);\n        _totalSupply = safeAdd(_totalSupply, tokens);\n        emit Transfer(address(0), msg.sender, tokens);\n        owner.transfer(msg.value);\n    }\n\n\n\n    // ------------------------------------------------------------------------\n    // Owner can transfer out any accidentally sent ERC20 tokens\n    // ------------------------------------------------------------------------\n    function transferAnyERC20Token(address tokenAddress, uint tokens) public onlyOwner returns (bool success) {\n        return ERC20Interface(tokenAddress).transfer(owner, tokens);\n    }\n}",
   "sourcePath": "/Users/arjun/Documents/Ethereum/uniswap/core/contracts/TartanToken.sol",
   "ast": {
@@ -16515,7 +16496,7 @@
   },
   "networks": {},
   "schemaVersion": "3.4.9",
-  "updatedAt": "2022-08-22T19:31:36.739Z",
+  "updatedAt": "2022-08-22T19:31:36.725Z",
   "devdoc": {
     "methods": {}
   },

@@ -1,6 +1,6 @@
 const Factory = artifacts.require("UniswapV2Factory.sol");
-const CMU1 = artifacts.require("CMUToken1.sol");
-const CMU2 = artifacts.require("CMUToken2.sol");
+const CMU1 = artifacts.require("CMUToken.sol");
+const CMU2 = artifacts.require("TartanToken.sol");
 
 module.exports = async function (deployer, network, accounts) {
 
@@ -9,11 +9,11 @@ module.exports = async function (deployer, network, accounts) {
   const factory = await Factory.deployed();
 
   // Deploying the tokens
-  await deployer.deploy(CMU1,1300, "CMU Coin","CMCOIN");
+  await deployer.deploy(CMU1);
   const cmu1 = await CMU1.deployed();
   
 
-  await deployer.deploy(CMU2,1300, "Tartan Coin","TARCOIN");
+  await deployer.deploy(CMU2);
   const cmu2 = await CMU2.deployed();
 
   cmu1Address = cmu1.address;
