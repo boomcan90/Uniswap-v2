@@ -1,12 +1,17 @@
 const Factory = artifacts.require("UniswapV2Factory.sol");
 const CMU1 = artifacts.require("CMUToken.sol");
 const CMU2 = artifacts.require("TartanToken.sol");
+const LPTOKEN = artifacts.require("UniswapV2ERC20.sol");
 
 module.exports = async function (deployer, network, accounts) {
 
   // Deploying the factory
   await deployer.deploy(Factory, accounts[0]);
   const factory = await Factory.deployed();
+
+  // Deploying the LP tokens
+  await deployer.deploy(LPTOKEN);
+  const lptoken = await LPTOKEN.deployed();
 
   // Deploying the tokens
   await deployer.deploy(CMU1);
