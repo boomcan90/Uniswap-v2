@@ -59,6 +59,7 @@ blockchain is setup for us to deploy Uniswap V2.
 
 7. Open a terminal in the `periphery` folder, and run the following: 
    ```sh
+   npm i
    truffle migrate
    ```
 
