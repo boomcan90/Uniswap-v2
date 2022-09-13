@@ -17,7 +17,7 @@ keep it open as we will be using this later. For the rest of these instructions,
 name. Under the "Chain" option, ensure that the 
 hardfork is set to "Muir Glacier". Click on "Save Workspace". Wait for the accounts
 to deploy with 100ETH each. This can take some time. Once complete, the Ganache 
-blockchain is setup for us to deploy Uniswap V2. 
+blockchain is setup for us to deploy Uniswap V2. While we have been importing the `truffle-config.js` for the other projects, we are not doing that in this instance, since that has issues with slowing down Ganache once the contracts are deployed. 
 
 3. Going back to the terminal instance, run the following commands: 
    ```sh
@@ -31,6 +31,8 @@ blockchain is setup for us to deploy Uniswap V2.
     2. UniswapV2ERC20 Contract Address
     3. CMUToken Contract Address
     4. TartanToken Contract Address
+  
+   As a part of this, we are deploying the Factory and it's requirements - one of them being the [UniswapV2Pair.sol](core/contracts/UniswapV2Pair.sol) contract. This defines the way that an arbitrary ERC20 token can be transferred for another arbitrary ERC20 token.
 
 4. Next, run the command `truffle console`. This should connect to the ganache instance. 
    Within this shell, run the following commands: 
@@ -42,7 +44,7 @@ blockchain is setup for us to deploy Uniswap V2.
 
    Take note of the output of the second command. Leave this instance of terminal open
    as we would be interacting with this later once we have deployed the Router and have obtained
-   it's address.
+   it's address. This does validation of the contract. This is a security measure added into the Router to ensure that the only Pair contract that the router is communicating with is the one that it is expecting. 
 
 5. Open the `periphery` folder in your preferred text editor. Once in this folder, we
    need to edit a few files. The first one is `$DIR/periphery/contracts/libraries/UniswapV2Library.sol`.
@@ -78,7 +80,7 @@ from the CMUToken and TartanTokens. This can be done by running the following co
     tartantoken.approve(router, "1000000000000000000000", {from: accounts[1]})
     tartantoken.approve(router, "1000000000000000000000", {from: accounts[2]})
     ```
-9. Next, we get two accounts to get 1 ETH worth of CMUToken and TartanToken. Refer to Homework 4 on how to do that. 
+9. Next, we get two accounts to get 1 ETH worth of CMUToken and TartanToken. In this case, we are going to be using the second and third accounts created in Ganache. The ERC20 contracts can be found [here](core/contracts/CMUToken.sol) and [here](core/contracts/TartanToken.sol). In order to purchase the tokens, a call to the default function is needed. This would be done in a manner similar to the one covered in the [code walkthrough](https://github.com/mm6/ethereum-code-walkthrough_1). To use web3, use the `periphery` instance of `truffle console`.
 10. For a UniSwapV2 contract to be able to swap tokens, it needs to be able to have the necessary amount of liquidity of both tokens to be able to swap the tokens for each other. This can be done by running the following commands in the `periphery`'s `truffle console` instance:
     ```js
     UniswapV2Router02.deployed().then((x)=>{router=x})
@@ -90,3 +92,24 @@ from the CMUToken and TartanTokens. This can be done by running the following co
     ```js
     router.swapTokensForExactTokens("10000000000000000000", "20000000000000000000", [cmutokenadd, tartantokenadd], accounts[2], new Date().getTime()+100, {from:accounts[2]})
     ```
+
+
+### Metamask
+
+As a part of [Lab 1](https://github.com/mm6/ethereum-lab1), metamask was one of the dependencies that was installed. We would be using this to get a visual feedback on the transactions. 
+
+Metamask is a wallet extension added into the web-browser of choice. 
+
+1. Click on the MetaMask plugin in your browser. There is a circle icon on the top right that is the "Accounts" icon. Click this icon and open "Settings". Under "Advanced", set "Advanced Gas Controls" to "ON". Also, set "Show Conversion on Testnets" to "ON".
+
+2. At this point, a new network needs to be added to metamask. Metamask ships with a default "Localhost 8545" network, but this is not compatible with Ganache out of the box. We need to delete this network and add it with the correct settings to get it to work. Under "Settings" > "Networks", click on "Localhost 8545" and then on "Delete". Confirm Deleting the Network by pressing the red button.
+
+3. Click on the Add a network button on the top right. Under "Network Name" enter Ganache, under "New RPC URL" enter http://127.0.0.1:7545, under "ChainID" enter 1337, and under Currency Symbol enter "ETH" and then select "Save". You will now be able to import accounts from Ganache. Always ensure that you are working with the "Custom RPC" network and not any other networks in MetaMask.
+
+   To see an expanded view of your wallet, click on the "Account Options" ellipsis to the right of the account and click on "Expand View".
+
+   Currently, your account name is "Account 1" and you control 0 ETH. To complete transactions through the wallet, you will import accounts from Ganache into your MetaMask wallet as "imported" accounts. In Ganache, you can view the key icon to the right of the public key of each account, click on the key icon of the second account and you can view the private key of the account. Copy the private key and use it for importing the account into MetaMask.
+
+   In the expanded view of MetaMask, click on the "My Accounts" image on the top right, and select "Import Account", select "Private Key" from the dropdown menu and paste the copied private key from the previous step. Click on "Import" and you have successfully imported a Ganache account to your MetaMask Wallet. You now control 100 ETH from "Account 2". Use the same method to add "Account 3", which corresponds to the third account from Ganache. 
+
+4. In MetaMask, expand the view of the first account and click on "Add Tokens" to add the CMU Token to the account. Click on "Custom Token" and paste the copied address in the "Step 3" and click on "Add Custom Token", and then click on "Import Tokens". You have now successfully added CMU Tokens to your  account. Do the same step for TartanToken for the same account; and for the other imported account.
