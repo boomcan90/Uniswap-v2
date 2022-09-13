@@ -28,9 +28,8 @@ blockchain is setup for us to deploy Uniswap V2. While we have been importing th
     Within this output, we want to take note of the following: 
 
     1. UniswapV2Factory Contract Address
-    2. UniswapV2ERC20 Contract Address
-    3. CMUToken Contract Address
-    4. TartanToken Contract Address
+    2. CMUToken Contract Address
+    3. TartanToken Contract Address
   
    As a part of this, we are deploying the Factory and it's requirements - one of them being the [UniswapV2Pair.sol](core/contracts/UniswapV2Pair.sol) contract. This defines the way that an arbitrary ERC20 token can be transferred for another arbitrary ERC20 token.
 
@@ -57,9 +56,9 @@ blockchain is setup for us to deploy Uniswap V2. While we have been importing th
 
 6. The other file that needs to be changed is `$DIR/periphery/migrations/2_deploy_contracts.js`
    In this file, replace the `FACTORY_ADDRESS` variable with the UniswapV2Factory Contract 
-   Address noted in Step 3.
+   Address noted in Step 3. In this case, we will be leaving the `0x` within the variable.
 
-7. Open a terminal in the `periphery` folder, and run the following: 
+7. Open a new terminal in the `periphery` folder, and run the following: 
    ```sh
    npm i
    truffle migrate
@@ -80,19 +79,23 @@ from the CMUToken and TartanTokens. This can be done by running the following co
     tartantoken.approve(router, "1000000000000000000000", {from: accounts[1]})
     tartantoken.approve(router, "1000000000000000000000", {from: accounts[2]})
     ```
-9. Next, we get two accounts to get 1 ETH worth of CMUToken and TartanToken. In this case, we are going to be using the second and third accounts created in Ganache. The ERC20 contracts can be found [here](core/contracts/CMUToken.sol) and [here](core/contracts/TartanToken.sol). In order to purchase the tokens, a call to the default function is needed. This would be done in a manner similar to the one covered in the [code walkthrough](https://github.com/mm6/ethereum-code-walkthrough_1). To use web3, use the `periphery` instance of `truffle console`.
-10. For a UniSwapV2 contract to be able to swap tokens, it needs to be able to have the necessary amount of liquidity of both tokens to be able to swap the tokens for each other. This can be done by running the following commands in the `periphery`'s `truffle console` instance:
+9. Next, we get the second and third account from ganache to get 1 ETH worth of CMUToken and TartanToken. The ERC20 contracts can be found [here](core/contracts/CMUToken.sol) and [here](core/contracts/TartanToken.sol). In order to purchase the tokens, a call to the default function is needed. This would be done in a manner similar to the one covered in the [code walkthrough](https://github.com/mm6/ethereum-code-walkthrough_1). To use web3, use the `periphery` instance of `truffle console`. There are expected to be 4 transactions, with each transaction being worth 1 ETH.
+
+> At this point, proceed to the Metamask section of this lab and return here when that's complete.
+
+10. For a UniSwapV2 contract to be able to swap tokens, it needs to be able to have the necessary amount of liquidity of both tokens to be able to swap the tokens for each other. We will be using Account 1 as the liquidity provider for this exercise. This can be done by running the following commands in the `periphery`'s `truffle console` instance:
     ```js
     UniswapV2Router02.deployed().then((x)=>{router=x})
     cmutokenadd = "<CMU Token address copied in step 3>"
     tartantokenadd = "<Tartan Token address copied in step 3>"
     router.addLiquidity(cmutokenadd, tartantokenadd, "100000000000000000000", "100000000000000000000", 10000, 10000, accounts[1], new Date().getTime()+100, {from: accounts[1]})
     ```
-11. Lastly, to do a swap for CMUTokens, run the following commands: 
+11. Examine your metamask accounts to see the changes that happened due to executing this command. 
+12. Lastly, to do a swap for CMUTokens, run the following commands within `periphery`'s `truffle console`: 
     ```js
     router.swapTokensForExactTokens("10000000000000000000", "20000000000000000000", [cmutokenadd, tartantokenadd], accounts[2], new Date().getTime()+100, {from:accounts[2]})
     ```
-
+13. Examine your metamask accounts to see the changes that happened due to executing this command. 
 
 ### Metamask
 
@@ -104,12 +107,12 @@ Metamask is a wallet extension added into the web-browser of choice.
 
 2. At this point, a new network needs to be added to metamask. Metamask ships with a default "Localhost 8545" network, but this is not compatible with Ganache out of the box. We need to delete this network and add it with the correct settings to get it to work. Under "Settings" > "Networks", click on "Localhost 8545" and then on "Delete". Confirm Deleting the Network by pressing the red button.
 
-3. Click on the Add a network button on the top right. Under "Network Name" enter Ganache, under "New RPC URL" enter http://127.0.0.1:7545, under "ChainID" enter 1337, and under Currency Symbol enter "ETH" and then select "Save". You will now be able to import accounts from Ganache. Always ensure that you are working with the "Custom RPC" network and not any other networks in MetaMask.
+3. Click on the Add a network button on the top right. Under "Network Name" enter Ganache, under "New RPC URL" enter http://127.0.0.1:7545, under "ChainID" enter 1337, and under Currency Symbol enter "ETH" and then select "Save". You will now be able to import accounts from Ganache. Always ensure that you are working with the "Ganache" network and not any other networks in MetaMask.
 
    To see an expanded view of your wallet, click on the "Account Options" ellipsis to the right of the account and click on "Expand View".
 
    Currently, your account name is "Account 1" and you control 0 ETH. To complete transactions through the wallet, you will import accounts from Ganache into your MetaMask wallet as "imported" accounts. In Ganache, you can view the key icon to the right of the public key of each account, click on the key icon of the second account and you can view the private key of the account. Copy the private key and use it for importing the account into MetaMask.
 
-   In the expanded view of MetaMask, click on the "My Accounts" image on the top right, and select "Import Account", select "Private Key" from the dropdown menu and paste the copied private key from the previous step. Click on "Import" and you have successfully imported a Ganache account to your MetaMask Wallet. You now control 100 ETH from "Account 2". Use the same method to add "Account 3", which corresponds to the third account from Ganache. 
+   In the expanded view of MetaMask, click on the "My Accounts" icon on the top right, and select "Import Account", select "Private Key" from the dropdown menu and paste the copied private key from the previous step. Click on "Import" and you have successfully imported a Ganache account to your MetaMask Wallet. You now control 100 ETH from "Account 2". Use the same method to add "Account 3", which corresponds to the third account from Ganache. 
 
-4. In MetaMask, expand the view of the first account and click on "Add Tokens" to add the CMU Token to the account. Click on "Custom Token" and paste the copied address in the "Step 3" and click on "Add Custom Token", and then click on "Import Tokens". You have now successfully added CMU Tokens to your  account. Do the same step for TartanToken for the same account; and for the other imported account.
+4. In MetaMask, expand the view of the "Account 2" and click on "Import Tokens" to add the CMU Token to the account. Click on "Custom Token" and paste the CMU Token contract address from "Step 3" and click on "Add Custom Token", and then click on "Import Tokens". You have now successfully added CMU Tokens to your  account. Do the same step for TartanToken for the same account. Repeat both the steps to import CMUToken and Tartan Token for "Account 3".
